@@ -3,6 +3,7 @@ import './ExpenseDate.css'
 
 const ExpenseDate = ({ expenseDate }) => {
 
+    // 월을 영문으로 변경
     const month = expenseDate.toLocaleString('en-US',{month: 'long'});
 
     return (
