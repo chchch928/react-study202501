@@ -1,5 +1,6 @@
 import ExpenseItem from "./components/expenses/ExpenseItem";
 import ExpenseList from "./components/expenses/ExpenseList.jsx";
+import Counter from "./components/Counter.jsx";
 
 // 컴포넌트
 const App = () => {
@@ -25,6 +26,8 @@ const App = () => {
 
     return (
         <>
+            <Counter />
+            <Counter />
         <ExpenseList expenses = {expenses}/>
         </>
     );
