@@ -51,10 +51,12 @@ const ExpenseForm = () => {
 
     // 리액트는 상태값변경은 반드시 setter를 통해서 수행
     // 상태값이 객체나 배열일 경우에는 항상 새로운 객체, 배열을 세팅하라
-    setUserInput({
-      ...userInput,
-      title: e.target.value,
-    });
+    setUserInput((prevState) =>
+      ({
+        ...prevState,
+        title: e.target.value,
+      })
+    );
   };
   const handlePriceInput = (e) => {
     setUserInput({

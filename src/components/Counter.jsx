@@ -13,7 +13,8 @@ const Counter = () => {
     // 상태값을 업데이트 할 때는 상태값에 직접 접근하면 안되고
     // 반드시 setter를 통해 업데이트 해야함
 
-    setCount(count+1);
+    setCount((prevCount) => prevCount + 1);
+    setCount((prevCount) => prevCount + 1);
     // 상태업데이트는 리렌더링 이후에 일어남
     console.log('2. count by click: ', count);
   }
