@@ -24,7 +24,9 @@ const App = () => {
     ];
 
     return (
+        <>
         <ExpenseList expenses = {expenses}/>
+        </>
     );
 }
 
