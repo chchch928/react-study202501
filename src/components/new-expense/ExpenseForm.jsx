@@ -41,7 +41,10 @@ const ExpenseForm = ({onAdd}) => {
     console.log('payload: ', userInput);
 
     // 부모가 보낸 데이터전달용 함수를 호출
-    onAdd(userInput);
+    onAdd({
+      ...userInput,
+      date: new Date(userInput.date)
+    });
 
     // 입력창 비우기 - 상태값과 input을 연결하려면 양방향으로 연결해야함
     // input태그에 입력하면 상태값 userInput만 변경됨 - 단방향
