@@ -6,7 +6,7 @@ const CourseList = ({items}) => {
   return (
     <ul className='goal-list'>
       {
-        items.map(item => <CourseItem key ={Math.random()} item = {item} />)
+        items.map(item => <CourseItem key ={item.id} item = {item} />)
       }
     </ul>
   );

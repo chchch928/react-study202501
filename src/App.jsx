@@ -14,6 +14,8 @@ const App = () => {
         setGoals([...goals,goal]);
     };
 
+    console.log(goals);
+
     return (
       <div>
           <section id = 'goal-form'>
