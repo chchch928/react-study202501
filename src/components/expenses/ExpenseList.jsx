@@ -5,17 +5,14 @@ import ExpenseFilter from "./ExpenseFilter.jsx";
 
 const ExpenseList = ({ expenses }) => {
 
-  const onChangeYear = (newYearInput) =>{
-    console.log('상향식데이터 전달용 함수')
+  // 연도를 올리기 위한 함수
+  const onFilterChange = (filteredYear) => {
+    console.log(`끌어올려진 연도 :${filteredYear}`)
+  };
 
-
-  }
-
-  //ExpenseFilter에서 선택한 연도값을 여기서 출력
-  console.log('필터연도값을 출력')
     return (
         <div className='expenses'>
-            <ExpenseFilter onChange = {onChangeYear} />
+            <ExpenseFilter onChangeFilter = {onFilterChange} />
             <ExpenseItem expense={expenses[0]} />
             <ExpenseItem expense={expenses[1]} />
             <ExpenseItem expense={expenses[2]} />
