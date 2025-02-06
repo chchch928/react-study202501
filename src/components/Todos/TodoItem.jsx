@@ -5,8 +5,6 @@ import styles from './scss/TodoItem.module.scss'
 
 const TodoItem = ({item}) => {
 
-
-
   const {text, remove, 'todo-list-item':itemStyle, 'check-circle':checkCircle } = styles;
 
   return (
@@ -14,7 +12,7 @@ const TodoItem = ({item}) => {
       <div className={checkCircle}>
         <MdDone/>
       </div>
-      <span className={text}>{item}</span>
+      <span className={text}>{item.text}</span>
       <div className={remove}>
         <MdDelete/>
       </div>

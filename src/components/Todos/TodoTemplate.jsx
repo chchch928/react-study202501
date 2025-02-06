@@ -12,6 +12,11 @@ const TodoTemplate = () => {
     setGoals([...goals,goal]);
   };
 
+  // 삭제함수
+  const onDeleteGoal = (id) => {
+
+  }
+
   return (
     <div className={styles.TodoTemplate}>
       <TodoHeader />

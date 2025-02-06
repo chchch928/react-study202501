@@ -9,7 +9,15 @@ const TodoInput = ( { onAdd }) => {
   const handleSubmit = e => {
     e.preventDefault();
 
-    onAdd(enteredText);
+    if (enteredText.trim() === '') return; // 빈 값 방지
+
+    const newGoal = {
+      id: Math.random(),
+      text: enteredText
+    };
+
+    onAdd(newGoal);
+
 
     setEnteredText('');
   }
@@ -31,7 +39,7 @@ const TodoInput = ( { onAdd }) => {
         <form className={insertForm} onSubmit = {handleSubmit} >
           <input
             type='text'
-            onInput = {handleGoalInput}
+            onChange= {handleGoalInput}
             value = {enteredText}
             placeholder='할 일을 입력 후, 엔터를 누르세요!'
           />
