@@ -9,3 +9,7 @@
 1. `git clone
 2. `npm install` : 최초 1번
 3. `npm run dev` : 프론트엔드 서버 실행 (서버켤 때마다 실행)
+
+#추가 라이브러리 설치
+1. styled-components: 동적 css를 처리해주는 라이브러리
+- `$npm install styled-components`

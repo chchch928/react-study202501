@@ -1,9 +1,11 @@
 import React from 'react';
-import './CourseItem.css';
+import styles from './CourseItem.module.css';
 
 const CourseItem = ({item,onDelete}) => {
 
   const {id, text} = item;
+
+  const {'goal-item':goalItem} = styles;
 
   /*
     1. li 태그에 클릭이벤트가 걸려야 함
@@ -17,7 +19,13 @@ const CourseItem = ({item,onDelete}) => {
     onDelete(id);
   }
 
-  return <li className='goal-item' onClick={handleDelete}>{text}</li>;
+  return (
+    <li
+      className={goalItem}
+      onClick={handleDelete}>
+      {text}
+    </li>
+  );
 };
 
 export default CourseItem;
