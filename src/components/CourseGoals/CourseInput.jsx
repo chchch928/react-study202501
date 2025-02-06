@@ -35,15 +35,17 @@ const CourseInput = ({onAdd}) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className='form-control'>
-        <label style={{ color: isValid ? 'black' : 'red' }}>나의 목표</label>
+      <div className={`form-control ${!isValid ? 'invalid' : ''}`}>
+        <label
+          // style={{ color: isValid ? 'black' : 'red' }}
+        >나의 목표</label>
         <input
           type='text'
           onInput={handleGoalInput}
           value={enteredText}
           style={{
-            background: isValid ? 'transparent' : 'salmon',
-            borderColor: isValid ? 'black' : 'red'
+            // background: isValid ? 'transparent' : 'salmon',
+            // borderColor: isValid ? 'black' : 'red'
           }}
         />
       </div>
