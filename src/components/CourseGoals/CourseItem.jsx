@@ -1,7 +1,7 @@
 import React from 'react';
 import './CourseItem.css';
 
-const CourseItem = ({item}) => {
+const CourseItem = ({item,onDelete}) => {
 
   const {id, text} = item;
 
@@ -12,7 +12,12 @@ const CourseItem = ({item}) => {
     4. App.jsx에서는 받은 id를 기반으로 goals 배열에서 해당 아이템을 제거후 상태변경을 통해 리렌더링
   */
 
-  return <li className='goal-item'>{text}</li>;
+  const handleDelete = e => {
+    console.log('삭제!');
+    onDelete(id);
+  }
+
+  return <li className='goal-item' onClick={handleDelete}>{text}</li>;
 };
 
 export default CourseItem;
