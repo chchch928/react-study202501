@@ -1,27 +1,42 @@
-import React, {useRef, useState} from 'react';
-import TodoHeader from "./TodoHeader.jsx";
-import styles from './scss/TodoTemplate.module.scss'
-import TodoMain from "./TodoMain.jsx";
-import TodoInput from "./TodoInput.jsx";
+import React, { useState } from 'react';
+import TodoHeader from './TodoHeader';
+import styles from './scss/TodoTemplate.module.scss';
+import TodoMain from './TodoMain';
+import TodoInput from './TodoInput';
+
+const DUMMY_TODOS = [
+  { id: 1, title: '리액트 공부', done: true },
+  { id: 2, title: '점심 먹기', done: false },
+  { id: 3, title: '프로젝트하기', done: false },
+  { id: 4, title: '숙제하기', done: true },
+];
 
 const TodoTemplate = () => {
 
-  const [goals,setGoals] = useState([]);
+  // 할일 목록을 상태관리
+  const [todoList, setTodoList] = useState(DUMMY_TODOS);
 
-  const onAddGoals = (goal) => {
-    setGoals([...goals,goal]);
+  // 데이터 상향식 전달을 위한 할 일 추가 함수 내려주기
+  const addTodo = (newTitle) => {
+    const newTodo = {
+      id: Math.random().toString()
+      , title: newTitle
+      , done: false
+    };
+
+    setTodoList([...todoList, newTodo]);
   };
 
-  // 삭제함수
-  const onDeleteGoal = (id) => {
-
-  }
+  // 할일 삭제 함수
+  const removeTodo = (id) => {
+    setTodoList(todoList.filter(todo => todo.id !== id));
+  };
 
   return (
     <div className={styles.TodoTemplate}>
       <TodoHeader />
-      <TodoMain items={goals} />
-      <TodoInput onAdd={onAddGoals}/>
+      <TodoMain items={todoList} onRemove = {removeTodo} />
+      <TodoInput onAdd={addTodo} />
     </div>
   );
 };
