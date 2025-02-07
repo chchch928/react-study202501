@@ -1,14 +1,15 @@
 import './App.css'
-import CourseInput from "./components/CourseGoals/CourseInput.jsx";
-import CourseList from "./components/CourseGoals/CourseList.jsx";
-import {useState} from "react";
-import './App.css';
-import TodoTemplate from "./components/Todos/TodoTemplate.jsx";
+import AddUser from "./components/Users/AddUsers.jsx";
+import AddUsers from "./components/Users/AddUsers.jsx";
+import UserList from "./components/Users/UserList.jsx";
 
 // 컴포넌트
 const App = () => {
-    return <TodoTemplate />;
-}
+    return <>
+        <AddUsers />
+        <UserList />
+    </>;
+};
 
 
 export default App;
