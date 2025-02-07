@@ -7,8 +7,7 @@ const Button = ({ type, onClick, className, disabled, children }) => {
       type={type || 'button'}
       className={`${styles.button} ${className}`}
       onClick={onClick}
-      disabled={disabled}
-    >
+      disabled={disabled}>
       {children}
     </button>
   );
