@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 
 /*
   timer를 전역변수로 설정 시 5초 start -> 10초 start -> 10초 stop -> 5초 stop
@@ -8,9 +8,12 @@ import React, {useState} from 'react';
   처음 5초 타이머 아이디가 10초에게 덮어씌워져서 사라짐
 */
 // 타이머 id 저장
-  let timer;
+//   let timer;
 
 const TimerChallenge = ({ title, targetTime }) => {
+
+  // 타이머 id를 컴포넌트별로 각각 관리 - 리렌더링이 되어도 값이 유지
+  const timer = useRef();
 
   //타이머가 시작되었는지 확인하는 상태값
   const [timerStarted,setTimerStarted] = useState(false);
@@ -32,19 +35,19 @@ const TimerChallenge = ({ title, targetTime }) => {
     */
 
     // 실제 시간을 실행
-    timer = setTimeout(() => {
+    timer.current = setTimeout(() => {
       console.log(`${targetTime}초가 지남!`);
       setTimerExpired(true);
     },targetTime * 1000);
 
-    console.log(`start timer : ${timer}`);
+    console.log(`start timer : ${timer.current}`);
   }
 
   // stop 이벤트
   const handleStop = e => {
-    console.log(`stop timer: ${timer}`)
+    console.log(`stop timer: ${timer.current}`)
     console.log('타이머를 중지함');
-    clearTimeout(timer); // 타이머 해제
+    clearTimeout(timer.current); // 타이머 해제
   }
 
   return (
