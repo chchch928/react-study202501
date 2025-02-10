@@ -46,11 +46,22 @@ const Login = ({onLogin}) => {
   // 버튼 활성화 상태를 처리(side effect)를 위한 useEffect
 
   useEffect(() => {
+
+    const timer = setTimeout(() => {
+
     console.log('useEffect call in login.js');
 
     setFormIsValid(
       enteredEmail.includes('@') && enteredPassword.trim().length > 6
     );
+
+    },1000);
+
+    // cleanup 함수 - 컴포넌트가 업데이트 되기 직전에 실행
+    return () => {
+      console.log('clean up!! -', enteredEmail);
+      clearTimeout(timer);
+    };
     // enterEmail,enteredPassword 될때마다 useEffect가 실행되도록 한다.
   }, [enteredEmail, enteredPassword]);
 
