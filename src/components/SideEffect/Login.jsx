@@ -46,7 +46,7 @@ const Login = ({onLogin}) => {
 
   return (
     <Card className={styles.login}>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div
           className={`${styles.control} ${emailIsValid === false ? styles.invalid : ''}`}>
           <label htmlFor='email'>E-Mail</label>

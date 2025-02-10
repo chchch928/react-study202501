@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import {useEffect, useState} from 'react';
 import './App.css';
 import MainHeader from './components/SideEffect/MainHeader';
 import Home from './components/SideEffect/Home';
@@ -10,13 +10,23 @@ const App = () => {
     // 로그인 상태 체크
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+    // side effect (서버에서 데이터 가져오거나 상태가 변하는) 처리를 위한 함수
+    useEffect(() => {
+        console.log('useEffect 실행됨!')
+
     // 지금 이 컴포넌트가 렌더링 될때 localStorage에서 토큰을 꺼내서 이전에 로그인했던 사람인지를 확인
     console.log('토큰검사!')
-    const token = localStorage.getItem('login-flag')
+    const token = localStorage.getItem('login-flag');
 
     if(token === '1'){
-        setIsLoggedIn(true)
+        setIsLoggedIn(true);
     }
+
+    }, []);
+
+    // 기본적으로 useEffect의 첫번째 파라미터에 렌더링 후 실행할 함수를 전달
+    // 두번째 파라미터에는 빈 배열을 전달하면 렌더링 이후 단 1번만 실행하는 함수로 작동
+
 
 
 
@@ -32,8 +42,15 @@ const App = () => {
         }
     };
 
+    // 로그아웃을 위한 함수
+    const handleLogout =() =>{
+      localStorage.removeItem('login-flag');
+      setIsLoggedIn(false);
+    };
+
+
     return <>
-        <MainHeader />
+        <MainHeader onLogout = {handleLogout}/>
         <main>
             {isLoggedIn && <Home />}
             {!isLoggedIn && <Login onLogin={handleLogin} />}
