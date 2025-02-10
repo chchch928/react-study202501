@@ -1,5 +1,15 @@
 import React, {useState} from 'react';
 
+/*
+  timer를 전역변수로 설정 시 5초 start -> 10초 start -> 10초 stop -> 5초 stop
+  누르면 5초 타이머가 제대로 중지되지 않음
+
+  -> 원인은 4개의 컴포넌트가 1개의 전역변수 timer를 공유함으로써 생기는 문제임
+  처음 5초 타이머 아이디가 10초에게 덮어씌워져서 사라짐
+*/
+// 타이머 id 저장
+  let timer;
+
 const TimerChallenge = ({ title, targetTime }) => {
 
   //타이머가 시작되었는지 확인하는 상태값
@@ -8,8 +18,6 @@ const TimerChallenge = ({ title, targetTime }) => {
   // 시간이 다 지났는지 여부
   const [timerExpired,setTimerExpired] = useState(false);
 
-  // 타이머 id 저장
-  let timer;
 
   // start 이벤트
   const handleStart = e => {
