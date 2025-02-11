@@ -1,4 +1,5 @@
 import React, {useRef, useState} from 'react';
+import ResultModal from "./ResultModal.jsx";
 
 /*
   timer를 전역변수로 설정 시 5초 start -> 10초 start -> 10초 stop -> 5초 stop
@@ -10,16 +11,19 @@ import React, {useRef, useState} from 'react';
 // 타이머 id 저장
 //   let timer;
 
-const TimerChallenge = ({ title, targetTime }) => {
+const TimerChallenge = ({title, targetTime}) => {
 
   // 타이머 id를 컴포넌트별로 각각 관리 - 리렌더링이 되어도 값이 유지
   const timer = useRef();
 
+  // 모달을 제어하기 위해 모달을 저장하는 Ref
+  const dialogRef = useRef();
+
   //타이머가 시작되었는지 확인하는 상태값
-  const [timerStarted,setTimerStarted] = useState(false);
+  const [timerStarted, setTimerStarted] = useState(false);
 
   // 시간이 다 지났는지 여부
-  const [timerExpired,setTimerExpired] = useState(false);
+  const [timerExpired, setTimerExpired] = useState(false);
 
 
   // start 이벤트
@@ -36,9 +40,11 @@ const TimerChallenge = ({ title, targetTime }) => {
 
     // 실제 시간을 실행
     timer.current = setTimeout(() => {
+      // 패배 시점에 모달을 띄운다
       console.log(`${targetTime}초가 지남!`);
       setTimerExpired(true);
-    },targetTime * 1000);
+      dialogRef.current.showModal();
+      }, targetTime * 1000);
 
     console.log(`start timer : ${timer.current}`);
   }
@@ -48,24 +54,33 @@ const TimerChallenge = ({ title, targetTime }) => {
     console.log(`stop timer: ${timer.current}`)
     console.log('타이머를 중지함');
     clearTimeout(timer.current); // 타이머 해제
+    // 승리 시점
+    dialogRef.current.showModal();
+
   }
 
   return (
-    <section className="challenge">
-      <h2>{title}</h2>
-      {timerExpired && <p>You Lose!!</p>}
-      <p className="challenge-time">
-        {targetTime} second{targetTime > 1 ? 's' : ''}
-      </p>
-      <p>
-        <button onClick = {timerStarted? handleStop : handleStart}>
-          {timerStarted? 'Stop' : 'Start'} Challenge
-        </button>
-      </p>
-      <p className="">
-        {timerStarted ? 'Time is running...' : 'Timer inactive'}
-      </p>
-    </section>
+
+    <>
+      {/* 컴포넌트에 ref를 붙일 수 없다 태그에만 가능 */}
+      <ResultModal ref={dialogRef} result="lost" targetTime={targetTime}/>
+      <section className="challenge">
+        <h2>{title}</h2>
+
+        <p className="challenge-time">
+          {targetTime} second{targetTime > 1 ? 's' : ''}
+        </p>
+        <p>
+          <button onClick={timerStarted ? handleStop : handleStart}>
+            {timerStarted ? 'Stop' : 'Start'} Challenge
+          </button>
+        </p>
+        <p className="">
+          {timerStarted ? 'Time is running...' : 'Timer inactive'}
+        </p>
+      </section>
+
+    </>
   );
 };
 
